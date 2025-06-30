@@ -95,7 +95,7 @@ namespace BulkyWeb.Controllers
 			return RedirectToAction("Index");
 		}
 
-        //To Check the Name is unique or not
+        //To Check the Name is unique
         public IActionResult IsNameUnique(string name, int id)
         {
             bool isexist = _db.Categories.Any(c => c.Name == name && c.Id != id);
