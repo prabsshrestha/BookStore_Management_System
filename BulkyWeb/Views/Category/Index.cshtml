@@ -1,5 +1,4 @@
 ﻿@model List<Category> 
-
 <div class="container">
 	<div class="row pt-4 pb-3">
 		<div class="col-6">
@@ -21,6 +20,8 @@
 			<th>
 				Display Order
 			</th>
+			<th style="width: 250px;">
+			</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -29,6 +30,16 @@
 			<tr>
 				<td>@obj.Name</td>
 				<td>@obj.DisplayOrder</td>
+				<td class="text-nowrap">
+					<div class="w-50 btn-group" role="group">
+						<a asp-controller="Category" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary mx-1">
+								<i class="bi bi-pencil-square"></i> Edit
+						</a>
+						<a asp-controller="Category" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger">
+							<i class="bi bi-trash-fill"></i> Delete
+						</a>
+					</div>
+				</td>
 			</tr>
 		}
 	</tbody>

@@ -1,6 +1,7 @@
 ﻿using BulkyWeb.Data;
 using BulkyWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace BulkyWeb.Controllers
 {
@@ -26,9 +27,83 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            _db.Categories.Add(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("Name", "The Display Order can't exactly match the Name");
+            }
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Add(obj);
+                _db.SaveChanges();
+                TempData["success"] = "Category created successfully";
+                return RedirectToAction("Index");
+            } 
+            return View();
         }
-    }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Category? categoryDb = _db.Categories.FirstOrDefault(c => c.Id == id);
+            if (categoryDb == null)
+            {
+                return NotFound();
+            }
+            return View(categoryDb);
+		}
+
+		[HttpPost]
+		public IActionResult Edit(Category obj)
+		{
+            if (ModelState.IsValid)
+			{
+				_db.Categories.Update(obj);
+				_db.SaveChanges();
+				TempData["success"] = "Category updated successfully";
+				return RedirectToAction("Index");
+			}
+			return View();
+		}
+
+		public IActionResult Delete(int? id)
+		{
+			if (id == null || id == 0)
+			{
+				return NotFound();
+			}
+			Category? categoryDb = _db.Categories.FirstOrDefault(c => c.Id == id);
+			if (categoryDb == null)
+			{
+				return NotFound();
+			}
+			return View(categoryDb);
+		}
+
+		[HttpPost, ActionName("Delete")]
+		public IActionResult DeletePOST(int? id)
+		{
+            Category? obj = _db.Categories.Find(id);
+            if (obj == null) { 
+                return NotFound();
+            }
+            _db.Categories.Remove(obj);
+			_db.SaveChanges();
+			TempData["success"] = "Category deleted successfully";
+			return RedirectToAction("Index");
+		}
+
+        //To Check the Name is unique or not
+        public IActionResult IsNameUnique(string name, int id)
+        {
+            bool isexist = _db.Categories.Any(c => c.Name == name && c.Id != id);
+            if (isexist)
+            {
+                return Json($"The name '{name}' is already in use.");
+            }
+            return Json(true);
+        }
+	}
 }
