@@ -96,9 +96,9 @@ namespace BulkyWeb.Controllers
 		}
 
         //To Check the Name is unique
-        public IActionResult IsNameUnique(string name, int id)
+        public IActionResult IsNameUnique(string name)
         {
-            bool isexist = _db.Categories.Any(c => c.Name == name && c.Id != id);
+            bool isexist = _db.Categories.Any(c => c.Name == name);
             if (isexist)
             {
                 return Json($"The name '{name}' is already in use.");
