@@ -1,13 +1,12 @@
-using Bulky.DataAccess.Data;
-using Microsoft.EntityFrameworkCore;
+using DependencyInjection_Service_LifeTime.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>(options => 
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+builder.Services.AddScoped<IScopedGuidService, ScopedGuidService>();
+builder.Services.AddTransient<ITransientGuidService, TransientGuidService>();
+builder.Services.AddSingleton<ISingletonGuidService, SingletonGuidService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
