@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BulkyWeb", "BulkyWeb\BulkyWeb.csproj", "{62062F57-F08A-49A4-BA2B-E6563F0777A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookWeb", "BulkyWeb\BookWeb.csproj", "{62062F57-F08A-49A4-BA2B-E6563F0777A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BulkyWebRazor", "BulkyWebRazor\BulkyWebRazor.csproj", "{20FC0DB6-81D8-4366-8033-F55F9B95639A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookWebRazor", "BulkyWebRazor\BookWebRazor.csproj", "{20FC0DB6-81D8-4366-8033-F55F9B95639A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bulky.Models", "Bulky.Models\Bulky.Models.csproj", "{E82C2098-C3D5-4D6E-9325-BDD0E406D2D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Book.Models", "Bulky.Models\Book.Models.csproj", "{E82C2098-C3D5-4D6E-9325-BDD0E406D2D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bulky.DataAccess", "Bulky.DataAccess\Bulky.DataAccess.csproj", "{D93F4A1F-DF98-4881-8CF9-1C9D651C39D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Book.DataAccess", "Bulky.DataAccess\Book.DataAccess.csproj", "{D93F4A1F-DF98-4881-8CF9-1C9D651C39D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bulky.Utility", "Bulky.Utility\Bulky.Utility.csproj", "{6C605026-308F-4629-9AF0-B475B18BB5F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Book.Utility", "Bulky.Utility\Book.Utility.csproj", "{6C605026-308F-4629-9AF0-B475B18BB5F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection_Service_LifeTime", "DependencyInjection_Service_LifeTime\DependencyInjection_Service_LifeTime.csproj", "{EAA52662-9888-45E8-872E-8068345BD153}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjection_Service_LifeTime", "DependencyInjection_Service_LifeTime\DependencyInjection_Service_LifeTime.csproj", "{EAA52662-9888-45E8-872E-8068345BD153}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
