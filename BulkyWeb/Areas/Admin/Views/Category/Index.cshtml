@@ -1,0 +1,62 @@
+﻿@model List<Category> 
+<style>
+	thead th {
+		position: sticky;
+		top: 0;
+		z-index: 2; 
+	}
+</style>
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-secondary bg-gradient m-lg-0 py-2">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">Category List</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<div class="row pb-3">
+			<div class="text-end">
+				<a asp-controller="Category" asp-action="Create" class="btn btn-primary p-2">
+					<i class="bi bi-plus-circle p-1" style="margin-right: 8px;"></i>Create New Category
+				</a>
+			</div>
+		</div>
+	<div style="max-height: 400px; overflow: auto;">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>
+							Category Name
+						</th>
+						<th>
+							Display Order
+						</th>
+						<th style="width: 400px;">
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var obj in Model.OrderBy(u => u.DisplayOrder))
+					{
+						<tr>
+							<td>@obj.Name</td>
+							<td>@obj.DisplayOrder</td>
+							<td class="text-nowrap">
+								<div class="w-70 btn-group" role="group">
+									<a asp-controller="Category" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary mx-1">
+										<i class="bi bi-pencil-square"></i> Edit
+									</a>
+									<a asp-controller="Category" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger">
+										<i class="bi bi-trash-fill"></i> Delete
+									</a>
+								</div>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+
+	</div>
+	</div>
+</div>

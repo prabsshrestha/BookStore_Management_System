@@ -1,11 +1,11 @@
-using BulkyWebRazor.Data;
-using BulkyWebRazor.Models;
+using BookWebRazor.Data;
+using BookWebRazor.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 
-namespace BulkyWebRazor.Pages.Categories
+namespace BookWebRazor.Pages.Categories
 {
 	[BindProperties]
     public class CreateModel : PageModel

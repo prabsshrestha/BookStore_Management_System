@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -17,10 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bulky.DataAccess\Bulky.DataAccess.csproj" />
-    <ProjectReference Include="..\Bulky.Models\Bulky.Models.csproj" />
-    <ProjectReference Include="..\Bulky.Utility\Bulky.Utility.csproj" />
-    <ProjectReference Include="..\BulkyWebRazor\BulkyWebRazor.csproj" />
+    <ProjectReference Include="..\Bulky.DataAccess\Book.DataAccess.csproj" />
+    <ProjectReference Include="..\Bulky.Models\Book.Models.csproj" />
+    <ProjectReference Include="..\Bulky.Utility\Book.Utility.csproj" />
+    <ProjectReference Include="..\BulkyWebRazor\BookWebRazor.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace BulkyWebRazor.Models
+namespace BookWebRazor.Models
 {
     public class Category
     {

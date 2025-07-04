@@ -1,9 +1,9 @@
-using BulkyWebRazor.Data;
-using BulkyWebRazor.Models;
+using BookWebRazor.Data;
+using BookWebRazor.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace BulkyWebRazor.Pages.Categories
+namespace BookWebRazor.Pages.Categories
 {
 	[BindProperties]
     public class DeleteModel : PageModel
