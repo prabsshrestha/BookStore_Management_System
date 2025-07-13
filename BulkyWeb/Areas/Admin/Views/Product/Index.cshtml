@@ -17,7 +17,7 @@
 	<div class="card-body p-4">
 		<div class="row pb-3">
 			<div class="text-end">
-				<a asp-controller="Product" asp-action="Create" class="btn btn-primary p-2">
+				<a asp-controller="Product" asp-action="Upsert" class="btn btn-primary p-2">
 					<i class="bi bi-plus-circle p-1" style="margin-right: 8px;"></i>Create New Product
 				</a>
 			</div>
@@ -30,8 +30,8 @@
 						<th>ISBN</th>
 						<th>Price</th>
 						<th>Author</th>
-@* 						<th>Category</th>
- *@						<th style="width: 400px;">
+						<th>Category</th>
+						<th style="width: 400px;">
 						</th>
 					</tr>
 				</thead>
@@ -43,10 +43,10 @@
 							<td>@obj.ISBN</td>
 							<td>@obj.ListPrice</td>
 							<td>@obj.Author</td>
-@* 							<td>@obj.Category.Name</td>
- *@							<td class="text-nowrap">
+							<td>@obj.Category.Name</td>
+							<td class="text-nowrap">
 								<div class="w-70 btn-group" role="group">
-									<a asp-controller="Product" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary mx-1">
+									<a asp-controller="Product" asp-action="Upsert" asp-route-Id="@obj.Id" class="btn btn-primary mx-1">
 										<i class="bi bi-pencil-square"></i> Edit
 									</a>
 									<a asp-controller="Product" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger">
