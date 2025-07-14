@@ -128,55 +128,55 @@ namespace BookWeb.Areas.Admin.Controllers
         //    return View();
         //}
 
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-			//Product product = _unitofWork.Product.Get(u => u.Id == id);
-			ProductViewModel productVM = new()
-			{
-				Product = _unitofWork.Product.Get(u => u.Id == id),
-				CategoryList = _unitofWork.Category
-				.GetAll().Select(u => new SelectListItem
-				{
-					Text = u.Name,
-					Value = u.Id.ToString(),
-				})
-			};
+   //     public IActionResult Delete(int? id)
+   //     {
+   //         if (id == null || id == 0)
+   //         {
+   //             return NotFound();
+   //         }
+			////Product product = _unitofWork.Product.Get(u => u.Id == id);
+			//ProductViewModel productVM = new()
+			//{
+			//	Product = _unitofWork.Product.Get(u => u.Id == id),
+			//	CategoryList = _unitofWork.Category
+			//	.GetAll().Select(u => new SelectListItem
+			//	{
+			//		Text = u.Name,
+			//		Value = u.Id.ToString(),
+			//	})
+			//};
 
-			if (productVM == null)
-            {
-                return NotFound();
-            }
-            return View(productVM);
-        }
+			//if (productVM == null)
+   //         {
+   //             return NotFound();
+   //         }
+   //         return View(productVM);
+   //     }
 
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePost(int? id)
-        {
-			string wwwRootPath = _webHostEnvironment.WebRootPath;
-			var product = _unitofWork.Product.Get(u => u.Id == id);
-            if(product == null)
-            {
-                return NoContent();
-            }
+   //     [HttpPost, ActionName("Delete")]
+   //     public IActionResult DeletePost(int? id)
+   //     {
+			//string wwwRootPath = _webHostEnvironment.WebRootPath;
+			//var product = _unitofWork.Product.Get(u => u.Id == id);
+   //         if(product == null)
+   //         {
+   //             return NoContent();
+   //         }
 
-            if(!string.IsNullOrEmpty(product.ImageUrl)) 
-            {
-				var imagepath =
-	                    Path.Combine(wwwRootPath, product.ImageUrl.TrimStart('\\'));
-                if (System.IO.File.Exists(imagepath))
-                {
-                    System.IO.File.Delete(imagepath);
-                }
-            }
-			_unitofWork.Product.Remove(product);
-			_unitofWork.Save();
-			TempData["success"] = "Product Deleted successfully";
-            return RedirectToAction("Index");
-        }
+   //         if(!string.IsNullOrEmpty(product.ImageUrl)) 
+   //         {
+			//	var imagepath =
+	  //                  Path.Combine(wwwRootPath, product.ImageUrl.TrimStart('\\'));
+   //             if (System.IO.File.Exists(imagepath))
+   //             {
+   //                 System.IO.File.Delete(imagepath);
+   //             }
+   //         }
+			//_unitofWork.Product.Remove(product);
+			//_unitofWork.Save();
+			//TempData["success"] = "Product Deleted successfully";
+   //         return RedirectToAction("Index");
+   //     }
 
         #region APICalls
 
@@ -186,6 +186,29 @@ namespace BookWeb.Areas.Admin.Controllers
             List<Product> objProduct = _unitofWork.Product.GetAll(includeProperties: "Category").ToList();
             return Json(new {data = objProduct});
         }
+
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            var product = _unitofWork.Product.Get(u => u.Id==id);
+            if(product == null)
+            {
+                return Json(new { success = false, message = "Error while deleting" });
+            }
+
+            var oldimagepath =
+                            Path.Combine(_webHostEnvironment.WebRootPath, 
+                            product.ImageUrl.TrimStart('\\'));                             
+            if (System.IO.File.Exists(oldimagepath))
+            {
+                System.IO.File.Delete(oldimagepath);
+            }
+            _unitofWork.Product.Remove(product);
+            _unitofWork.Save();
+            return Json(new { success = true, message = "Deleted Successful" });
+        }   
+
+
         #endregion
     }
 }
