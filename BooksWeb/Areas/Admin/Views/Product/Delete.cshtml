@@ -1,0 +1,76 @@
+﻿@model ProductViewModel
+<div class="card shadow border-0 my-4">
+	<div class="card-header bg-secondary bg-gardient m-lg-0 py-2">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">Delete Product</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4" style="max-height: 480px; overflow: auto;">
+		<form method="post">
+			<input asp-for="Product.Id" hidden />
+			<input asp-for="Product.ImageUrl" hidden />
+			<div class="row">
+				<div class="col-10">
+					<div class="border p-3">
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Product.Title" disabled class="form-control border-0 shadow" />
+							<label asp-for="Product.Title"></label>
+						</div>
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Product.Description" disabled class="form-control border-0 shadow" />
+							<label asp-for="Product.Description"></label>
+						</div>
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Product.ISBN" disabled class="form-control border-0 shadow" />
+							<label asp-for="Product.ISBN"></label>
+						</div>
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Product.Author" disabled class="form-control border-0 shadow" />
+							<label asp-for="Product.Author"></label>
+						</div>
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Product.ListPrice" disabled class="form-control border-0 shadow" />
+							<label asp-for="Product.ListPrice"></label>
+						</div>
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Product.Price" disabled class="form-control border-0 shadow" />
+							<label asp-for="Product.Price"></label>
+						</div>
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Product.Price50" disabled class="form-control border-0 shadow" />
+							<label asp-for="Product.Price50"></label>
+						</div>
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Product.Price100" disabled class="form-control border-0 shadow" />
+							<label asp-for="Product.Price100"></label>
+						</div>
+						<div class="form-floating py-2 col-12">
+							<input type="file" name="file" disabled class="form-control border-0 shadow" />
+							<label asp-for="Product.ImageUrl"></label>
+						</div>
+						<div class="row pt-3">
+							<div class="col-6 col-md-3">
+								<button type="submit" class="btn btn-danger form-control">Delete</button>
+							</div>
+							<div class="col-6 col-md-3">
+								<a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary border form-control">Back To List</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-2">
+					<img src="@Model.Product.ImageUrl" disabled width="100%"
+						 style="border-radius:5px; border:1px solid #bbb9b9" />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
