@@ -4,7 +4,7 @@
 	<div class="card-header bg-secondary bg-gradient m-lg-0 py-2">
 		<div class="row">
 			<div class="col-12 text-center">
-				<h2 class="text-white py-2">Create Category</h2>
+				<h2 class="text-white py-2">@(Model.Id != 0 ? "Update" : "Create") Category</h2>
 			</div>
 		</div>
 	</div>
@@ -25,7 +25,14 @@
 				</div>
 				<div class="row pt-2">
 					<div class="col-6 col-md-3 ">
-						<button type="submit" class="btn btn-primary form-control">Create</button>
+						@if(Model.Id != 0)
+						{
+							<button type="submit" class="btn btn-primary form-control">Update</button>
+						}
+						else
+						{
+							<button type="submit" class="btn btn-primary form-control">Create</button>
+						}
 					</div>
 					<div class="col-6 col-md-3">
 						<a asp-controller="Category" asp-action="Index" class="btn btn-outline-primary border form-control">Back To List</a>
