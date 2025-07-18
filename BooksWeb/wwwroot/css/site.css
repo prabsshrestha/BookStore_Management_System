@@ -7,6 +7,10 @@ a.navbar-brand {
     word-break: break-all;
 }
 
+.dt-length label {
+    margin-left: 8px;
+}
+
 thead th {
     position: sticky;
     top: 0;
