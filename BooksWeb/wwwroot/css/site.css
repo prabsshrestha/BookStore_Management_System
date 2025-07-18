@@ -7,7 +7,15 @@ a.navbar-brand {
     word-break: break-all;
 }
 
+.dt-length label {
+    margin-left: 8px;
+}
 
+thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
