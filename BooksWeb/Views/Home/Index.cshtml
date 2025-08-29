@@ -1,16 +1,28 @@
 ﻿@{
     var role = ViewData["Role"]?.ToString();
+    var isAuthenticated = User.Identity.IsAuthenticated;
+    var username = User.Identity.Name;
 }
 
-<h1>Welcome @role!</h1>
-
-@if (role == "Admin")
+@if (isAuthenticated)
 {
-    <p>You have admin privileges.</p>
-    <button>Admin Action</button>
+    <h1>Welcome @username!</h1>
+
+    @if (role == "Admin")
+    {
+        <p class="lead">This is your Book Store Management Admin Dashboard.</p>
+        <button>Admin Action</button>
+    }
+    else
+    {
+        <button>Customer Action</button>
+    }
 }
 else
 {
-    <p>You are a customer.</p>
-    <button>Customer Action</button>
+    <h1>Welcome !</h1>
+    <p class="lead">Please, login to get access to the application.</p>
+
+    <a class="btn btn-primary" href="/Identity/Account/Register">Create an account</a>
+    <a class="btn btn-secondary" href="/Identity/Account/Login">Login</a>
 }
