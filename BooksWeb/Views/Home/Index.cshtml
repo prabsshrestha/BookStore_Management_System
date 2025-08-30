@@ -2,27 +2,67 @@
     var role = ViewData["Role"]?.ToString();
     var isAuthenticated = User.Identity.IsAuthenticated;
     var username = User.Identity.Name;
+    var name = ViewData["DisplayName"].ToString() ?? "Guest";
+    int categoriescount = ViewBag.TotalCategories ?? 0;
+
 }
 
-@if (isAuthenticated)
-{
-    <h1>Welcome @username!</h1>
-
-    @if (role == "Admin")
+<div class="jumbotron text-center" style="padding-top:12px;">
+    <h1>Welcome @name!</h1>
+    @if (isAuthenticated)
     {
-        <p class="lead">This is your Book Store Management Admin Dashboard.</p>
-        <button>Admin Action</button>
+        if (role == "Admin")
+        {
+            <p class="lead">This is your Book Store Management Admin Dashboard.</p>
+        }
+        else
+        {
+            <button>Customer Action</button>
+        }
     }
     else
     {
-        <button>Customer Action</button>
-    }
-}
-else
-{
-    <h1>Welcome !</h1>
-    <p class="lead">Please, login to get access to the application.</p>
+        <p class="lead">Please, login to get access to the application.</p>
 
-    <a class="btn btn-primary" href="/Identity/Account/Register">Create an account</a>
-    <a class="btn btn-secondary" href="/Identity/Account/Login">Login</a>
+        <a class="btn btn-primary" href="/Identity/Account/Register">Create an account</a>
+        <a class="btn btn-secondary" href="/Identity/Account/Login">Login</a>
+    }
+</div>
+
+@if (isAuthenticated)
+{
+    if(role == "Admin")
+    {
+        <div class="row justify-content-center" style="max-width: 900px; margin: auto; gap: 15px; margin-top: 20px;">
+
+            <!-- Categories Card -->
+           <div class="custom-box p-4 text-center">
+               <h3>@categoriescount</h3>
+               <p>Total Categories</p>
+               <i class="fas fa-users fa-lg mb-2"></i><br />
+                <a href="/Admin/Category" class="btn btn-link p-0">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                </a>
+           </div>
+
+            <div class="custom-box p-4 text-center">
+                <h3></h3>
+                <p>Categories</p>
+                <i class="fas fa-users fa-lg mb-2"></i><br />
+                <a href="/Admin/Category" class="btn btn-link p-0">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+
+            <div class="custom-box p-4 text-center">
+                <h3></h3>
+                <p>Categories</p>
+                <i class="fas fa-users fa-lg mb-2"></i><br />
+                <a href="/Admin/Category" class="btn btn-link p-0">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+
+        </div>
+    }
 }
