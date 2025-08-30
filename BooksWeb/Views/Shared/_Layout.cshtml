@@ -13,46 +13,73 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-brand bg-primary border-bottom box-shadow mb-3" style="width:100%;">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-primary border-bottom box-shadow mb-3" style="font-size:17px;">
             <div class="container-fluid">
-                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">BookWeb</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole(SD.Role_Admin))
+                    {
+                        <a class="navbar-brand text-light" style="margin-left:106px;" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                            Book Store Management
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="navbar-brand text-light" style="margin-left:106px;" asp-area="Customer" asp-controller="Home" asp-action="Index">
+                            Book Store Management
+                        </a>
+                    }
+                }
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="Customer" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="Customer" asp-controller="Books" asp-action="Index">Books List</a>
-                        </li>
                         @if (User.IsInRole(SD.Role_Admin))
                         {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Books" asp-action="Index">Books List</a>
+                            </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Content Management
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
                                     </li>
                                 </ul>
                             </li>
                         }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Customer" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="Customer" asp-controller="Books" asp-action="Index">Books List</a>
+                            </li>
+                        }
                     </ul>
-                    <partial name="_LoginPartial"/>
+
+                    <ul class="navbar-nav ms-auto" style="margin-right:100px;">
+                        <partial name="_LoginPartial" />
+                    </ul>
                 </div>
             </div>
         </nav>
-    </header>
+
+</header>
     <div class="container">
         <main role="main" class="pb-3">
             <partial name="_Notification" />
@@ -61,7 +88,7 @@
     </div>
 
     <footer class="border-top footer text-muted mt-auto mb-4">
-        <div class="container text-center">
+        <div class="container text-center" style="padding-top:10px;">
             Made with <i class="bi bi-snow2"></i> by Prabesh Shrestha
         </div>
     </footer>
