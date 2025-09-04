@@ -46,8 +46,21 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();
+
+//Routing for your Admin/Customer dashboards.
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+//If the request is / (empty string),
+//? go to BaseHomeController.Index().
+app.MapControllerRoute(
+    name: "root",
+    pattern: "",
+    defaults: new { controller = "BaseHome", action = "Index" });
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=BaseHome}/{action=Index}/{id?}");
 
 app.Run();
