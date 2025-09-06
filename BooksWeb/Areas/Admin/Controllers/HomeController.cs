@@ -20,7 +20,7 @@ namespace BookWeb.Areas.Admin.Controllers
         {
             SetBaseViewData();
             ViewBag.TotalCategories = await _dbcontext.Categories.CountAsync();
-
+            ViewBag.TotalProduct = await _dbcontext.Products.CountAsync();
             return View("~/Views/Home/Index.cshtml");
         }
     }
