@@ -7,25 +7,30 @@
     var appUser = await UserManager.GetUserAsync(User) as Book.Models.ApplicationUser;
 }
 
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
+<ul class="navbar-nav ms-auto" style="margin-right:100px;">
+    @if (SignInManager.IsSignedIn(User) && User.IsInRole(SD.Role_Customer))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-controller="Cart" asp-action="Index">
+                <i class="bi bi-cart"></i> Cart
+            </a>
+        </li>
+    }
+
     <li class="nav-item">
-        <a id="manage" class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Settings</a>
+        <a id="manage" class="nav-link text-white"
+           asp-area="Identity" asp-page="/Account/Manage/Index">
+            Settings
+        </a>
     </li>
     <li class="nav-item">
-            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Content("~/")">
-                <button id="logout" type="submit" class="nav-link btn btn-link text-white border-0">Logout</button>
+        <form id="logoutForm" class="form-inline"
+              asp-area="Identity" asp-page="/Account/Logout"
+              asp-route-returnUrl="@Url.Content("~/")">
+            <button id="logout" type="submit"
+                    class="nav-link btn btn-link text-white border-0">
+                Logout
+            </button>
         </form>
     </li>
-}
-else
-{
-    <li class="nav-item">
-            <a class="nav-link text-white" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-            <a class="nav-link text-white" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
 </ul>
