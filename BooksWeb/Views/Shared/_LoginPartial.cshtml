@@ -1,20 +1,16 @@
-﻿@using Microsoft.AspNetCore.Identity
-
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-@{
-    //UserManager.GetUserAsync(User) returns an IdentityUser
-    var appUser = await UserManager.GetUserAsync(User) as Book.Models.ApplicationUser;
-}
-
+﻿
 <ul class="navbar-nav ms-auto" style="margin-right:100px;">
-    @if (SignInManager.IsSignedIn(User) && User.IsInRole(SD.Role_Customer))
+    @if (User.Identity.IsAuthenticated)
     {
-        <li class="nav-item">
-            <a class="nav-link text-white" asp-controller="Cart" asp-action="Index">
-                <i class="bi bi-cart"></i> Cart
-            </a>
-        </li>
+        if (User.IsInRole(SD.Role_Customer))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-controller="Cart" asp-action="Index">
+                    <i class="bi bi-cart"></i> Cart
+                </a>
+            </li>
+
+        }
     }
 
     <li class="nav-item">
