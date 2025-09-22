@@ -11,8 +11,12 @@
     @if (SignInManager.IsSignedIn(User) && User.IsInRole(SD.Role_Customer))
     {
         <li class="nav-item">
-            <a class="nav-link text-white" asp-controller="Cart" asp-action="Index">
-                <i class="bi bi-cart"></i> Cart
+            <a class="nav-link text-white position-relative" style="margin-right: 6px;" asp-controller="Cart" asp-action="Index">
+                <i class="bi bi-cart fs-5"></i>
+                <span id="cartCount"
+                      class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-badge d-none">
+                    0
+                </span>
             </a>
         </li>
     }
