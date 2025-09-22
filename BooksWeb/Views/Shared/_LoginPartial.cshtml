@@ -1,6 +1,6 @@
 ﻿
 <ul class="navbar-nav ms-auto" style="margin-right:100px;">
-    @if (User.Identity.IsAuthenticated)
+    @if (User.Identity.IsAuthenticated && User.IsInRole(SD.Role_Customer))
     {
         <li class="nav-item">
             <a class="nav-link text-white position-relative" style="margin-right: 6px;" asp-controller="Cart" asp-action="Index">
