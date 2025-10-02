@@ -15,7 +15,7 @@ namespace Book.DataAccess.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-
+        public DbSet<Cart> Cart { get; set;  }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
            //if u r using identirydbcontext u need to write this one line coz
