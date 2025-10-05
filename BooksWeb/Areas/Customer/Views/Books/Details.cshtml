@@ -1,130 +1,137 @@
 ﻿@model Product
 
-<form method="post">
-    <div class="card shadow border-0 mt-4 mb-4">
-        <div class="card-header bg-primary text-light py-2" style="height:90px;">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h3 class="text-white text-uppercase">@Model.Title</h3>
-                    <p class="text-white-50 fw-semibold mb-0">by @Model.Author</p>
-                </div>
+
+<div class="card shadow border-0 mt-4 mb-4">
+    <div class="card-header bg-primary text-light py-2" style="height:90px;">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="text-white text-uppercase">@Model.Title</h3>
+                <p class="text-white-50 fw-semibold mb-0">by @Model.Author</p>
             </div>
         </div>
-        <div class="card-body">
-            <div class="py-0">
-                <div class="row">
-                    <div class="col-6 col-md-2 offset-lg-1">
-                        <a asp-action="Index" class="btn btn-outline-primary mb-2 fw-semibold btn-sm text-uppercase">
-                            <small>Back to home</small>
-                        </a>
-                    </div>
+    </div>
+    <div class="card-body">
+        <div class="py-0">
+            <div class="row">
+                <div class="col-6 col-md-2 offset-lg-1">
+                    <a asp-action="Index" class="btn btn-outline-primary mb-2 fw-semibold btn-sm text-uppercase">
+                        <small>Back to home</small>
+                    </a>
                 </div>
-                <div class="row">
-                    <div class="col-12 col-lg-3 offset-lg-1 text-center mb-3">
-                        <img src="@Model.ImageUrl" width="100%" class="rounded" />
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-3 offset-lg-1 text-center mb-3">
+                    <img src="@Model.ImageUrl" width="100%" class="rounded" />
+                </div>
+                <div class="col-12 col-lg-6 offset-lg-1">
+
+                    <div class="col-12 col-md-6 pb-4">
+                        <span class="badge">@Model.Category.Name</span>
                     </div>
-                    <div class="col-12 col-lg-6 offset-lg-1">
-
-                        <div class="col-12 col-md-6 pb-4">
-                            <span class="badge">@Model.Category.Name</span>
+                    <div class="row ps-2">
+                        <h6 class="text-dark text-opacity-50 ">ISBN : @Model.ISBN</h6>
+                    </div>
+                    <div class="row ps-2">
+                        <h6 class="text-dark text-opacity-50  pb-2">
+                            List Price:
+                            <span class="text-decoration-line-through">
+                                @Model.ListPrice.ToString("c")
+                            </span>
+                        </h6>
+                    </div>
+                    <div class="row text-center ps-2">
+                        <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
+                            <div class="text-dark text-opacity-50 fw-semibold">Quantity</div>
                         </div>
-                        <div class="row ps-2">
-                            <h6 class="text-dark text-opacity-50 ">ISBN : @Model.ISBN</h6>
+                        <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
+                            <div class="text-dark text-opacity-50 fw-semibold">1-50</div>
                         </div>
-                        <div class="row ps-2">
-                            <h6 class="text-dark text-opacity-50  pb-2">
-                                List Price:
-                                <span class="text-decoration-line-through">
-                                    @Model.ListPrice.ToString("c")
-                                </span>
-                            </h6>
+                        <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
+                            <div class="text-dark text-opacity-50 fw-semibold">51-100</div>
                         </div>
-                        <div class="row text-center ps-2">
-                            <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
-                                <div class="text-dark text-opacity-50 fw-semibold">Quantity</div>
-                            </div>
-                            <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
-                                <div class="text-dark text-opacity-50 fw-semibold">1-50</div>
-                            </div>
-                            <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
-                                <div class="text-dark text-opacity-50 fw-semibold">51-100</div>
-                            </div>
-                            <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
-                                <div class="text-dark text-opacity-50 fw-semibold">100+</div>
-                            </div>
+                        <div class="p-1 col-3 col-lg-2 bg-white border-bottom">
+                            <div class="text-dark text-opacity-50 fw-semibold">100+</div>
                         </div>
-                        <div class="row text-center ps-2">
-                            <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>Price</div>
-                            </div>
-                            <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Price.ToString("c")</div>
-                            </div>
-                            <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Price50.ToString("c")</div>
-                            </div>
-                            <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Price100.ToString("c")</div>
-                            </div>
+                    </div>
+                    <div class="row text-center ps-2">
+                        <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
+                            <div>Price</div>
                         </div>
-                        <div class="row pl-2 my-3">
-                            <p class="text-secondary lh-sm">@Html.Raw(Model.Description)</p>
+                        <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
+                            <div>@Model.Price.ToString("c")</div>
                         </div>
-                        <div class="row pl-2 mb-3">
-                            <div class="col-md-4">
+                        <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
+                            <div>@Model.Price50.ToString("c")</div>
+                        </div>
+                        <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
+                            <div>@Model.Price100.ToString("c")</div>
+                        </div>
+                    </div>
+                    <div class="row pl-2 my-3">
+                        <p class="text-secondary lh-sm">@Html.Raw(Model.Description)</p>
+                    </div>
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="productId" value="@Model.Id" />
+                    <div class="row pl-2 mb-3">
+                        <div class="col-md-4">
+                            <div class="input-group mb-1">
                                 <div class="input-group mb-1">
-                                    <span class="input-group-text bg-primary text-white border-0 fw-semibold"
-                                          id="inputGroup-sizing-default">
-                                        Count
-                                    </span>
-                                    <input type="number" value="1" class="form-control text-end"
-                                           aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-
+                                    <span class="input-group-text bg-primary text-white border-0 fw-semibold">Count</span>
+                                    <input type="number" name="count" value="1" class="form-control text-end" />
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12 col-md-6 pb-1">
-                                <button id="addToCartBtn" type="button"
-                                        class="btn btn-primary w-100 py-2 text-uppercase fw-semibold">
-                                    <i class="bi bi-cart-plus"></i> Add to Cart
-                                </button>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 pb-1">
+                            <button id="addToCartBtn" type="submit" class="btn btn-primary w-100 py-2 text-uppercase fw-semibold">
+                                <i class="bi bi-cart-plus"></i> Add to Cart
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</form>
+</div>
 
 @section Scripts {
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const addBtn = document.getElementById("addToCartBtn");
-            const cartCount = document.getElementById("cartCount");
+        $(document).ready(function () {
+            $("#addToCartBtn").on("click", function (e) {
+                e.preventDefault();
 
-            let cartItems = 0; // local counter for now
+                const productId = $("input[name='productId']").val();
+                const count = $("input[name='count']").val() || 1;
+                const cartCount = $("#cartCount");
+                const token = $("input[name='__RequestVerificationToken']").val();
 
-            // Enable the button
-            addBtn.disabled = false;
+                $.ajax({
+                    url: '/Customer/Cart/AddToCart',
+                    type: 'POST',
+                    data: { productId: productId, count: count, __RequestVerificationToken: token },
+                    success: function (response) {
+                        if (response.success) {
+                            toastr.success(response.message);
 
-            addBtn.addEventListener("click", function () {
-                const quantity = parseInt(document.querySelector('input[type="number"]').value) || 1;
+                            let currentCount = parseInt(cartCount.text()) || 0;
+                            currentCount += parseInt(count);
+                            cartCount.text(currentCount);
 
-                cartItems += quantity;
-                cartCount.textContent = cartItems;
+                            cartCount.removeClass("d-none");
 
-                // Show badge only if count > 0
-                if (cartItems > 0) {
-                    cartCount.classList.remove("d-none");
-                }
-
-                // Trigger animation
-                cartCount.classList.add("bump");
-                setTimeout(() => {
-                    cartCount.classList.remove("bump");
-                }, 300);
+                            cartCount.addClass("bump");
+                            setTimeout(() => {
+                                cartCount.removeClass("bump");
+                            }, 300);
+                        } else {
+                            toastr.warning(response.message);
+                        }
+                    },
+                    error: function () {
+                        toastr.error("Something went wrong while adding to cart.");
+                    }
+                });
             });
         });
     </script>

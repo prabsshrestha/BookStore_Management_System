@@ -1,4 +1,18 @@
-﻿
+﻿@inject Book.DataAccess.Data.ApplicationDbContext _db
+@using System.Security.Claims
+
+@{
+    int cartCount = 0;
+    if (User.Identity.IsAuthenticated)
+    {
+        var claimsIdentity = (ClaimsIdentity)User.Identity;
+        var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        cartCount = _db.Cart.Where(c => c.ApplicationUserId == userId).Sum(c => c.Count);
+    }
+}
+
+
+
 <ul class="navbar-nav ms-auto" style="margin-right:100px;">
     @if (User.Identity.IsAuthenticated && User.IsInRole(SD.Role_Customer))
     {
@@ -6,8 +20,8 @@
             <a class="nav-link text-white position-relative" style="margin-right: 6px;" asp-controller="Cart" asp-action="Index">
                 <i class="bi bi-cart fs-5"></i>
                 <span id="cartCount"
-                      class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-badge d-none">
-                    0
+                      class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-badge @(cartCount == 0 ? "d-none" : "")">
+                    @cartCount
                 </span>
             </a>
         </li>
