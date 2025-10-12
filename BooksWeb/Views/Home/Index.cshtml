@@ -5,6 +5,7 @@
     var name = ViewData["DisplayName"].ToString() ?? "Guest";
     int categoriescount = ViewBag.TotalCategories ?? 0;
     int productCount = ViewBag.TotalProduct ?? 0;
+    int totalcartCount = ViewBag.TotalCart ?? 0;
 }
 
 <div class="jumbotron text-center" style="padding-top:12px;">
@@ -54,6 +55,22 @@
                 <p>Total Products</p>
                 <i class="fas fa-users fa-lg mb-2"></i><br />
                 <a href="/Admin/Product" class="btn btn-link p-0">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="row justify-content-center" style="max-width: 900px; margin: auto; gap: 15px; margin-top: 20px;">
+
+            <!-- Cart Total Card -->
+            <div class="custom-box p-4 text-center">
+                <h3>@totalcartCount</h3>
+                <p>Total Categories</p>
+                <i class="fas fa-users fa-lg mb-2"></i><br />
+                <a href="/Admin/Category" class="btn btn-link p-0">
                     More info <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
