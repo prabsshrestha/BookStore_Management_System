@@ -500,3 +500,17 @@ border-color: #4b7147;
     transform: scale(1.3);
     background-color: #ff6f61;
 }
+
+.table img {
+    border: 1px solid #ddd;
+    padding: 3px;
+    background: #fff;
+}
+
+.remove-btn {
+    transition: 0.2s;
+}
+
+    .remove-btn:hover {
+        transform: scale(1.1);
+    }
